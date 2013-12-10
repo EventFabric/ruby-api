@@ -11,16 +11,19 @@ install http://rake.rubyforge.org/
 Add this line to your application's Gemfile:
 
 ::
+
     gem 'eventfabric'
 
 And then execute:
 
 ::
+
     $ bundle
 
 Or install it yourself as:
 
 ::
+
     $ rake install
 
     $ gem install eventfabric
