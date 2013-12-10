@@ -7,7 +7,7 @@ module EventFabric
             @channel = channel
         end
 
-        def json()
+        def json
             return {
                 'channel' => @channel,
                 'value' => @value
