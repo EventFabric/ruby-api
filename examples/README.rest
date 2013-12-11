@@ -1,0 +1,25 @@
+Examples
+========
+
+sendjson.rb
+-----------
+
+Sends a the content of a file with JSON in it as an event.
+
+Command line options::
+
+    $ ruby sendjson.rb -h
+
+Usage: ruby sendjson.rb [OPTIONS]
+
+    Options
+    -u, --username USERNAME          Username to authenticate to Event Fabric
+    -p, --password PASSWORD          Password to authenticate to Event Fabric
+    -c, --channel CHANNEL            Channel used in the generated event
+    -P, --path PATH                  Path to the JSON file you want to send
+    -U, --url URL                    URL for Event Fabric API
+    -h, --help                       help
+
+Sample usage::
+
+    ruby sendjson.rb --username your_username --password your_password --channel your_channel --path example.json
