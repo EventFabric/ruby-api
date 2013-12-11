@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 #example using eventfabric api client library to send an arbitrary json
 #file as an event
 require 'optparse'
