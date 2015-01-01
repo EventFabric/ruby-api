@@ -10,7 +10,7 @@ module EventFabric
             @username = username
             @password = password
             @host = root_url.end_with?("/") ? root_url : root_url + "/"
-            @cookie = nil
+            @token = nil
             @use_ssl = use_ssl
         end
 
@@ -20,8 +20,8 @@ module EventFabric
                 'Content-Type' =>'application/json',
                 'Accept' =>'application/json'
             }
-            if @cookie != nil
-                initheader['Cookie'] = @cookie.split(";")[0]
+            if @token != nil
+                initheader['x-session'] = @token
             end
             http = Net::HTTP.new(uri.host, uri.port)
             req = Net::HTTP::Post.new(uri.request_uri, initheader)
@@ -54,14 +54,20 @@ module EventFabric
                 'email' => ''
             }.to_json
 
-            response = execute("session", body)
-            @cookie = response.response['set-cookie']
+            response = execute("sessions", body)
+            body = JSON.parse(response.body)
+            @token = body['token']
             return response
         end
 
         def send_event(event)
             #send event to server, return the response object
-            return execute("event", event.json)
+            bucket = event.bucket
+            if bucket == nil
+                bucket = "user_" + @username
+            end
+            path = "streams/" + bucket + "/" + event.channel + "/"
+            return execute(path, event.value_as_json)
         end
     end
 end

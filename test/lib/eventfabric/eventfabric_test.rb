@@ -1,9 +1,9 @@
 require_relative '../../test_helper'
 
 describe EventFabric do
-    username = "javierdallamore"
-    password = "apache"
-    client = EventFabric::Client.new(username, password, "http://event-fabric.com/api/")
+    username = "admin"
+    password = "secret"
+    client = EventFabric::Client.new(username, password, "http://localhost:8080/")
     event = EventFabric::Event.new({
         "text" => "CPU",
         "percentage" => 80
@@ -15,7 +15,7 @@ describe EventFabric do
     end
 
     it "endpoint" do
-        client.endpoint("event").must_equal("http://event-fabric.com/api/event")
+        client.endpoint("streams").must_equal("http://localhost:8080/streams")
     end
 
     it "credentials" do
