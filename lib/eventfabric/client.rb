@@ -64,7 +64,7 @@ module EventFabric
             #send event to server, return the response object
             bucket = event.bucket
             if bucket == nil
-                bucket = "user_" + @username
+                bucket = "_user_" + @username
             end
             path = "streams/" + bucket + "/" + event.channel + "/"
             return execute(path, event.value_as_json)
